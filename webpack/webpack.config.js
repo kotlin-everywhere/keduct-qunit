@@ -5,12 +5,12 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './index.js',
     resolve: {
-        modules: ['./node_modules', './libs', '../output'].map(function (s) {
+        modules: ['./node_modules', '../build/classes/main/lib', '../buid/classes/main', '../build/classes/test'].map(function (s) {
             return path.resolve(__dirname, s);
         })
     },
     output: {
-        path: __dirname + "/dist",
+        path: __dirname + "/build",
         filename: "bundle.js"
     },
     module: {

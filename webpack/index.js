@@ -1,1 +1,1 @@
-require('qunit-test.kt.js');
+require('qunit.kt_test.js');

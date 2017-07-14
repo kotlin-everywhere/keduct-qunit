@@ -12,12 +12,10 @@ buildscript {
 
 apply plugin: 'kotlin2js'
 compileKotlin2Js {
-    kotlinOptions.outputFile = "${projectDir}/output/qunit.kt.js"
     kotlinOptions.moduleKind = "commonjs"
     kotlinOptions.sourceMap = true
 }
 compileTestKotlin2Js {
-    kotlinOptions.outputFile = "${projectDir}/output/qunit-test.kt.js"
     kotlinOptions.moduleKind = "commonjs"
     kotlinOptions.sourceMap = true
 }
@@ -29,4 +27,23 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
     testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
+}
+
+// detect intellij
+boolean is_intellij = false
+for (Map.Entry<Object, Object> entry : System.properties.entrySet()) {
+    if (entry.value.toString().toLowerCase().indexOf("intellij") != -1) {
+        is_intellij = true
+    }
+}
+
+if (is_intellij) {
+    sourceSets {
+        main.kotlin.srcDirs += 'src/test/kotlin'
+        test.kotlin.srcDirs = []
+    }
+
+    dependencies {
+        compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
+    }
 }
