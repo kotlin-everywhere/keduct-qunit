@@ -1,7 +1,15 @@
 #gradle
 build/
 .gradle/
+output/
+
+#node.js
+node_modules/
+/webpack/dist/
 
 #Intellij
 .idea/
 *.iml
+
+#etc
+*.log
