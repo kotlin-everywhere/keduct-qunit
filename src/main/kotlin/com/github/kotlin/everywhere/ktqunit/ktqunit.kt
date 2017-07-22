@@ -29,8 +29,6 @@ fun asyncTest(promise: Bluebird<*>) {
             .catch { e ->
                 @Suppress("UnsafeCastFromDynamic")
                 QUnit.config.current.pushFailure(e.message, e.stack)
-                @Suppress("UnsafeCastFromDynamic")
-                throw e
             }
             .finally(QUnit.config.current.assert.async())
 }
