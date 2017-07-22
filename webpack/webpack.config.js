@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './index.js',
     resolve: {
-        modules: ['./node_modules', '../build/classes/main/lib', '../buid/classes/main', '../build/classes/test'].map(function (s) {
+        modules: ['./node_modules', '../build/classes/main/lib', '../build/classes/main', '../build/classes/test'].map(function (s) {
             return path.resolve(__dirname, s);
         })
     },

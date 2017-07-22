@@ -10,22 +10,30 @@ buildscript {
     }
 }
 
+apply plugin: 'maven'
+
 apply plugin: 'kotlin2js'
 compileKotlin2Js {
     kotlinOptions.moduleKind = "commonjs"
     kotlinOptions.sourceMap = true
+    kotlinOptions.metaInfo = true
+    kotlinOptions.main = "noCall"
+    kotlinOptions.outputFile = "$project.buildDir.path/classes/main/${project.name}.js"
 }
 compileTestKotlin2Js {
     kotlinOptions.moduleKind = "commonjs"
     kotlinOptions.sourceMap = true
+    kotlinOptions.main = "noCall"
 }
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+    compile 'com.github.kotlin-everywhere:ktbluebird:03e545baaafca4269f8fb9927b0e08499f2ba6fd'
     testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
 }
 

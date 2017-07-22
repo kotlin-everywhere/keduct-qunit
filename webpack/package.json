@@ -6,7 +6,7 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "kotlin": "^1.1.3-2"
+    "bluebird": "^3.5.0"
   },
   "scripts": {
     "build": "webpack",
