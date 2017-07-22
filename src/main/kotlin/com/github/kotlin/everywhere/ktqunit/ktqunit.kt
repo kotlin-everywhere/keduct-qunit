@@ -1,6 +1,8 @@
 package com.github.kotlin.everywhere.ktqunit
 
 import com.github.kotlin.everywhere.ktbluebird.Bluebird
+import org.w3c.dom.Element
+import kotlin.browser.document
 
 external private interface QUnitAssert {
     fun async(): () -> Unit
@@ -18,6 +20,9 @@ external private interface QUnitConfig {
 external private object QUnit {
     val config: QUnitConfig = definedExternally
 }
+
+fun fixture(): Element =
+        document.getElementById("qunit-fixture") ?: throw IllegalStateException("#qunit-fixture missing")
 
 fun asyncTest(promise: Bluebird<*>) {
     promise
