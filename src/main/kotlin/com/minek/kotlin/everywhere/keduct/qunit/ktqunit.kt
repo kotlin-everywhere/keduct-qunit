@@ -1,6 +1,6 @@
-package com.github.kotlin.everywhere.ktqunit
+package com.minek.kotlin.everywhere.keduct.qunit
 
-import com.github.kotlin.everywhere.ktbluebird.Bluebird
+import com.minek.kotlin.everywhere.keduct.bluebird.Bluebird
 import org.w3c.dom.Element
 import kotlin.browser.document
 

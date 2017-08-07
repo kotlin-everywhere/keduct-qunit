@@ -1,1 +1,1 @@
-require('ktqunit_test.js');
+require('../build/classes/test/keduct-qunit-test');

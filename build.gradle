@@ -24,6 +24,7 @@ compileTestKotlin2Js {
     kotlinOptions.moduleKind = "commonjs"
     kotlinOptions.sourceMap = true
     kotlinOptions.main = "noCall"
+    kotlinOptions.outputFile = "$project.buildDir.path/classes/test/${project.name}-test.js"
 }
 
 repositories {
@@ -33,25 +34,21 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    compile 'com.github.kotlin-everywhere:ktbluebird:03e545baaafca4269f8fb9927b0e08499f2ba6fd'
+    compile 'com.github.kotlin-everywhere:keduct-bluebird:e6589fe8beba8b29cc05e07094a39177bd789c9e'
     testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
 }
 
-// detect intellij
-boolean is_intellij = false
-for (Map.Entry<Object, Object> entry : System.properties.entrySet()) {
-    if (entry.value.toString().toLowerCase().indexOf("intellij") != -1) {
-        is_intellij = true
-    }
-}
+build.doLast {
+    (configurations.compile + configurations.testCompile).each { File file ->
+        copy {
+            includeEmptyDirs = false
 
-if (is_intellij) {
-    sourceSets {
-        main.kotlin.srcDirs += 'src/test/kotlin'
-        test.kotlin.srcDirs = []
-    }
-
-    dependencies {
-        compile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
+            from zipTree(file.absolutePath)
+            into "${buildDir}/kotlin-javascript-dependencies"
+            include { fileTreeElement ->
+                def path = fileTreeElement.path
+                path.endsWith(".js") && (path.startsWith("META-INF/resources/") || !path.startsWith("META-INF/"))
+            }
+        }
     }
 }
