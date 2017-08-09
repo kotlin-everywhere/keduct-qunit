@@ -34,7 +34,7 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-    compile 'com.github.kotlin-everywhere:keduct-bluebird:e6589fe8beba8b29cc05e07094a39177bd789c9e'
+    compile 'com.github.kotlin-everywhere:keduct-bluebird:d3fb232a759155fc005f8d43dfdacb07262cec02'
     testCompile "org.jetbrains.kotlin:kotlin-test-js:$kotlin_version"
 }
 
